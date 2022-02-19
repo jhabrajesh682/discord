@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+    #camera{
+        width:300px;
+        height:300px;
+        border:1px solid black;
+
+
+    }
+
+    </style>
+
+</head>
+<body>
+    <div id="camera"></div>
+    <button onclick="takeSnapshot()">Take Snapshot</button>
+    <div id="result"></div>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+    <script src="bundle.js"></script>
+    <script >
+
+        Webcam.set({
+            width:300,
+            height:300,
+            image_format: 'jpeg',
+            jpeg_quality: 100
+        })
+        Webcam.attach("#camera")
+        
+        function takeSnapshot() {
+         
+            Webcam.snap((data_uri)=>{
+            //     var base64Data = data_uri.replace(/^data:image\/png;base64,/, "");
+            //     const fs = require('fs');
+            //   fs.writeFile("./image/out.png", base64Data, 'base64', function (err) {
+            //         console.log(err);
+            //     });
+                document.getElementById('result').innerHTML='<img src="'+data_uri+'"/>'
+              
+            })
+        }
+    </script>
+
+</html>
